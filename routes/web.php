@@ -8,7 +8,7 @@ use App\Boglanish;
 use App\Kurs;
 use App\Maktab;
 use App\Yangilik;
-
+echo("dfgdg");
 Route::get('/', function () {
         
     $olish = Elon::all();
