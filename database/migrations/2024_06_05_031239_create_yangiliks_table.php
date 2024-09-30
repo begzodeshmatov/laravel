@@ -17,6 +17,7 @@ class CreateYangiliksTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('title');
+            $table->string('news');
             $table->timestamps();
         });
     }

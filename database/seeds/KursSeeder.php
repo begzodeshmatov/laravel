@@ -14,6 +14,7 @@ class KursSeeder extends Seeder
         DB::table('kurs')->insert([
             'name' => 'adminn',
             'title' => 'izohhh',
+            'kurs' => 'ona tili',
         ]);
     }
 }

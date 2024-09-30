@@ -8,7 +8,8 @@ use App\Boglanish;
 use App\Kurs;
 use App\Maktab;
 use App\Yangilik;
-echo("dfgdg");
+
+
 Route::get('/', function () {
         
     $olish = Elon::all();
@@ -44,6 +45,8 @@ Route::get('/kurs', 'HomeController@kurs');
 Route::get('/malumot', 'HomeController@malumot');
 Route::get('/boglanish', 'HomeController@boglanish');
 Route::get('/yangilik', 'HomeController@yangilik');
+Route::get('/center', 'CenterController@index');
+Route::get('/center/{id}', 'CenterController@center');
 
 Route::get('/userAdd', 'HomeController@userAdd');
 Route::post('/userSave', 'HomeController@userSave');
@@ -136,6 +139,24 @@ Route::get('/searchnavbar', 'XabarController@searchnavbar');
 Route::get('/searchelon', 'XabarController@searchelon');
 Route::get('/searchnew', 'XabarController@searchnew');
 
+
+
+Route::post('/importc', 'XabarController@import');
+Route::post('/import', 'XabarController@import');
+Route::post('/importnavbar', 'XabarController@importnavbar');
+Route::post('/importbanner', 'XabarController@importbanner');
+Route::post('/importmalumot', 'XabarController@importmalumot');
+
+Route::get('/export', 'XabarController@export');
+Route::get('/exportnavbar', 'XabarController@exportnavbar');
+Route::get('/exportbanner', 'XabarController@exportbanner');
+
+Route::get('/exportpdf/{id}', 'XabarController@exportpdf');
+Route::get('/exportpdfmalumot', 'XabarController@exportpdfmalumot');
+Route::get('/exportwordd/{id}', 'XabarController@exportwordd');
+
+
+Route::get('/exportword', 'XabarController@exportword');
 
 
 

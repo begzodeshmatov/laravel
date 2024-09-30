@@ -18,6 +18,7 @@ class CreateKursTable extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('image')->default('0');
+            $table->string('kurs');
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:sanctum');
     }
 
     /**
@@ -205,17 +205,20 @@ class HomeController extends Controller
         return redirect('/banner');
     }
 
-    public function lessonSave(LessonRequest $request) {
+    public function lessonSave(Request $request) {
         $get = new Lesson();
         $get->name = $request->name;
-        $get->title = $request->title;
-        $get->teacher = $request->teacher;
+        $get->birthday = $request->birthday;
+        $get->t_turi = $request->t_turi;
+        $get->q_turi = $request->q_turi;
+        $get->fakultet = $request->fakultet;
+        $get->t_nomi = $request->t_nomi;
+        $get->kurs = $request->kurs;
 
-        $imageName = time().'.'.$request->image->extension();
-        $request->image->move(public_path('rasmlar'),$imageName);
-        $get->image=$imageName;
+       
 
         $get->save();
+        // dd($request);
         return redirect('/lesson');
     }
     public function boglanishSave(Request $request) {
@@ -282,6 +285,8 @@ class HomeController extends Controller
             User::where('id',$id)->update($data);
             return back();
         }
+        User::where('id',$id)->update($data);
+            return back();
     }
 
     public function elonEditSave($id, Request $request) 
@@ -305,6 +310,8 @@ class HomeController extends Controller
             Elon::where('id',$id)->update($data);
             return back();
         }
+        Elon::where('id',$id)->update($data);
+        return back();
     }
 
     public function navbarEditSave($id, Request $request) {
@@ -330,6 +337,9 @@ class HomeController extends Controller
             Maktab::where('id',$id)->update($data);
             return back();
         }
+          
+        Maktab::where('id',$id)->update($data);
+        return back();
     }
     public function bannerEditSave($id, Request $request) {
         $data = [
@@ -343,27 +353,54 @@ class HomeController extends Controller
 
             $data['image'] = $imageName; 
             
-            Banner::where('id',$id)->update($data);
-            return back();
+           
         }
+        Banner::where('id',$id)->update($data);
+        return back();
     }
-    public function lessonEditSave($id, Request $request) {
-        $data = [
-            'name'=>$request->name,
-            'title'=>$request->title,
-            'teacher'=>$request->teacher,
-        ];
-        if(!empty($request->image))
-        {
-            $imageName = time().$request->image->getClientOriginalName();
-            $a =  $request->image->move(public_path('/rasmlar/'), $imageName);
-
-            $data['image'] = $imageName; 
-            
-            Lesson::where('id',$id)->update($data);
-            return back();
+    public function lessonEditSave($id, Request $request)
+    {
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'birthday' => 'nullable|date',
+            't_turi' => 'nullable|string|max:255',
+            'q_turi' => 'nullable|string|max:255',
+            'fakultet' => 'nullable|string|max:255',
+            't_nomi' => 'nullable|string|max:255',
+            'kurs' => 'nullable|string|max:255',
+        ]);
+        $data = [];
+    
+        if ($request->has('name')) {
+            $data['name'] = $request->name;
         }
+        if ($request->has('birthday')) {
+            $data['birthday'] = $request->birthday;
+        }
+        if ($request->has('t_turi')) {
+            $data['t_turi'] = $request->t_turi;
+        }
+        if ($request->has('q_turi')) {
+            $data['q_turi'] = $request->q_turi;
+        }
+        if ($request->has('fakultet')) {
+            $data['fakultet'] = $request->fakultet;
+        }
+        if ($request->has('t_nomi')) {
+            $data['t_nomi'] = $request->t_nomi;
+        }
+        if ($request->has('kurs')) {
+            $data['kurs'] = $request->kurs;
+        }
+        $data = $request->only(['name', 'birthday', 't_turi', 'q_turi', 'fakultet', 't_nomi', 'kurs']);
+        if (!empty($data)) {
+            Lesson::where('id', $id)->update($data);
+        }
+    
+        return back();
     }
+    
+    
     public function kursEditSave($id, Request $request) {
         $data = [
             'name'=>$request->name,
@@ -380,6 +417,8 @@ class HomeController extends Controller
             Kurs::where('id',$id)->update($data);
             return back();
         }
+        Kurs::where('id',$id)->update($data);
+        return back();
     }
     public function yangilikEditSave($id, Request $request) {
         $data = [
@@ -438,5 +477,15 @@ class HomeController extends Controller
         Boglanish::where('id',$id)->delete();
         return back();
     }
+
+
+
+
+
+
+
+
+
+    
 
 }

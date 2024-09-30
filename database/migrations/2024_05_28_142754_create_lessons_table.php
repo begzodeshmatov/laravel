@@ -15,9 +15,13 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('title');
-            $table->string('image')->default('0');
+            $table->string('name')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('t_turi')->nullable();
+            $table->string('q_turi')->nullable();
+            $table->string('fakultet')->nullable();
+            $table->string('t_nomi')->nullable();
+            $table->string('kurs')->nullable();
             $table->timestamps();
         });
     }

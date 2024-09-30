@@ -1,422 +1,437 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="icon" href="adminimages/favicon.ico" type="image/ico" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+@extends('layouts.app')
 
-    <title>Lesson page!</title>
-
-    <!-- Bootstrap -->
-    <link href="/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="/admin/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- bootstrap-progressbar -->
-    <link href="/admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="/admin/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link href="/admin/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="/admin/build/css/custom.min.css" rel="stylesheet">
-  </head>
-
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="\home" class="site_title"><i class="fa fa-paw"></i> <span>Begzod Eshmatov</span></a>
+@section('content')
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <!-- top tiles -->
+        <div class="row" style="display: inline-block;">
+            <div class="tile_count">
             </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="admin/production/images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Begzod</h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li>
-                    <a href="/elon"><i class="fa fa-home"></i> Home </a>
-                  </li>
-                  <li>
-                    <a href="/navbar"><i class="fa fa-edit"></i> Elon </a>
-                  </li>
-                  <li>
-                    <a href="/banner"><i class="fa fa-desktop"></i> Banner </a>
-                  </li>
-                  <li>
-                    <a href="/malumot"><i class="fa fa-desktop"></i> Ma'lumot </a>
-                  </li> 
-                  <li>
-                    <a href="/lesson"><i class="fa fa-table"></i> Teacher </a>
-                  </li>
-                  <li>
-                    <a href="/kurs"><i class="fa fa-table"></i> Kurs </a>
-                  </li>
-                  <li>
-                    <a href="/yangilik"><i class="fa fa-table"></i> Yangilik </a>
-                  </li>
-                  <li>
-                    <a href="/boglanish"><i class="fa fa-bar-chart-o"></i> Yangi xabarlar </a>
-                  </li>
-                  <li>
-                  <a href = "{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-clone"></i>Chiqish</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                    </form>
-                    
-                  </li>
-                </ul>
-              </div>
-             
-
-            </div>
-           
-          </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-              <nav class="nav navbar-nav">
-              <ul class=" navbar-right">
-                <li class="nav-item dropdown open" style="padding-left: 15px;">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="admin/production/images/img.jpg" alt="">Begzod Eshmatov
-                  </a>
-                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
-                  <a class="dropdown-item" href = "{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                    </form>
-                  </div>
-                </li>
-                <li role="presentation" class="nav-item dropdown open">
-                  <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">
-                        <?php 
-                            use App\Lesson;
-                            $count = Lesson::count();
-                            echo $count;
-
-                        ?>  
-                    </span>
-                  </a>
-                  <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                      <span class="image"><img src="admin/production/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>Begzod Eshmatov</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                        <?php 
-                            
-                            $xabar = Lesson::first();
-                        ?>
-                        </span>
-                      </a>
-                    </li>
-
-              
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <!-- top tiles -->
-          <div class="row" style="display: inline-block;" >
-          <div class="tile_count">
-          </div>
         </div>
         <div class="card-header">
-          <button style="margin-left: 1195px;" class="btn btn--add btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa  fa-plus"></i></button>
-          <div class="col-md-5">
-          <div class="form-group">
-              <form action="/searchteach" method="GET">
-             <div class="input-group">
-              <select class="form-select form-select-sm" aria-label="Default select example" name="teacher" >
-                <option>Fan tanlang...</option>
-                <option value="1">Ona tili</option>
-                <option value="2">Matematika</option>
-                <option value="3">Tarix</option>
-                <option value="4">Rus tili</option>
-              </select>
-              <button type="submit" class="btn btn-primary"><i style="font-size:17px;" class='bx bx-search'></i></button>
-              <a href="/clearteach" class="btn btn-primary"><i style="font-size:17px;" class='bx bx-trash'></i></a>
-          </div>
-         
-        </form>
-          </div>
-        </div>  
+            {{-- <form action="/importword" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $les->id }}">
+                <div class="mb-3">
+                    <label for="word_file" class="form-label">Word faylni yuklang:</label>
+                    <input type="file" class="form-control" id="word_file" name="word_file" required>
+                </div>
+                <button type="submit" class="btn btn-success">Word faylni yuklash va yangilash</button>
+            </form> --}}
 
-        <div class="container11">
-         <div class="col-md-5">
-        <div class="form-group">
-        <form  method="GET" action="/searchles">
-          <div class="input-group">
-            <input type="search" class="form-control" name="searchles" placeholder="Search">
-                <button class="btn btn-success " type="submit">Search</button>
-                <a href="/clearles" class="btn btn-success"><i style="font-size:20px;" class='bx bx-trash'></i></a>
-          </div>
-                
-        </form>
-        </div>
-       </div>
-       </div>
-        </div>
-        <style>
-          .container11 {
-            margin-top: -150px;
 
-          }
-        </style>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Teacher Qo'shish</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            <button style="float:right;" class="btn btn--add btn btn-primary" type="button" data-bs-toggle="modal"
+                data-bs-target="#exampleModal"><i class="fa  fa-plus"></i></button>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <form action="/searchteach" method="GET">
+                        <div class="input-group">
+                            <select class="form-select form-select-sm" aria-label="Default select example" name="kurs">
+                                <option>Kursni tanlang...</option>
+                                <option value="1">1-kurs</option>
+                                <option value="2">2-kurs</option>
+                                <option value="3">3-kurs</option>
+                                <option value="4">4-kurs</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary"><i style="font-size:17px;"
+                                    class='bx bx-search'></i></button>
+                            <a href="/clearteach" class="btn btn-primary"><i style="font-size:17px;"
+                                    class='bx bx-trash'></i></a>
                         </div>
-                            <div class="modal-body">
-                                <form action="/lessonSave" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Nomini kiriting..." >
-                                        @error('name')  <p style="color:red;">{{$message}}</p>   @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Title kiriting..." >
-                                        @error('title')  <p style="color:red;">{{$message}}</p>   @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Image</label>
-                                        <input type="file" class="form-control" name="image" accept=".jpg,.png,.jpeg">
-                                        @error('image')  <p style="color:red;">{{$message}}</p>   @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Fan nomi</label>
-                                        <select class="form-select" aria-label="Default select example" name="teacher">
-                                          <option selected>Fan tanlang...</option>
-                                          <option value="1">Ona tili</option>
-                                          <option value="2">Matematika</option>
-                                          <option value="3">Tarix</option>
-                                          <option value="4">Rus tili</option>
-                                        </select>
-                                       
-                                    </div>
 
-                                    <button class="btn btn-primary">Submit</button>
-                                </form>
-                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container11">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <form method="GET" action="/searchles">
+                            <div class="input-group">
+                                <input type="search" class="form-control" name="searchles" placeholder="Search">
+                                <button class="btn btn-success " type="submit">Search</button>
+                                <a href="/clearles" class="btn btn-success"><i style="font-size:20px;"
+                                        class='bx bx-trash'></i></a>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
-          <!-- /top tiles -->
-          <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            <th class="column-title">Id </th>
-                            <th class="column-title">Name</th>
-                            <th class="column-title">Title </th>
-                            <th class="column-title">Fan nomi</th>
-                            <th class="column-title">Image</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                          </tr>
-                        </thead>  
+        </div>
 
-                        <tbody>
-                        @foreach($lesson as $les)
-                          <tr class="even pointer">
-                            <td class=" ">{{$les->id}}</td>
-                            <td class=" ">{{$les->name}}</td>
-                            <td class=" ">{{$les->title}}</td>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Talaba Qo'shish</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/lessonSave" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" required
+                                    placeholder="Ism kiriting...">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tug'ilgan kun</label>
+                                <input type="date" class="form-control" name="birthday"
+                                    placeholder="Tug'ilgan kun kiriting...">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ta'lim turi</label>
+                                <select class="form-select" aria-label="Default select example" name="t_turi">
+                                    <option selected>Ta'lim turini tanlang...</option>
+                                    <option value="1">Grant</option>
+                                    <option value="2">Kontrakt</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Qabul turi</label>
+                                <select class="form-select" aria-label="Default select example" name="q_turi">
+                                    <option selected>Qabul turini tanlang...</option>
+                                    <option value="1">Kunduzgi</option>
+                                    <option value="2">Sirtqi</option>
+                                    <option value="3">Kechki</option>
+                                    <option value="4">Masofaviy</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Fakultet</label>
+                                <select class="form-select" aria-label="Default select example" name="fakultet">
+                                    <option selected>Fakultetni tanlang...</option>
+                                    <option value="1">Amaliy matematika</option>
+                                    <option value="2">Psixologiya</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Oliy ta'lim nomi</label>
+                                <select class="form-select" aria-label="Default select example" name="t_nomi">
+                                    <option selected>Oliy ta'limni tanlang...</option>
+                                    <option value="1">O'zbekiston Milliy universiteti Jizzax filiali</option>
+                                    <option value="2">Jizzax davlat pedagogika universiteti</option>
+                                    <option value="3">Jizzax davlat politexnika instituti</option>
+                                    <option value="4">Sambhram universiteti</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Kurs</label>
+                                <select class="form-select" aria-label="Default select example" name="kurs">
+                                    <option selected>Kursni tanlang...</option>
+                                    <option value="1">1-kurs</option>
+                                    <option value="2">2-kurs</option>
+                                    <option value="3">3-kurs</option>
+                                    <option value="4">4-kurs</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /top tiles -->
+
+        <div class="table-responsive">
+            <table class="table table-striped jambo_table ">
+                <thead>
+                    <tr class="headings">
+                        <th class="column-title">Id </th>
+                        <th class="column-title">Ism</th>
+                        <th class="column-title">Tug'ilgan kun </th>
+                        <th class="column-title">Ta'lim turi</th>
+                        <th class="column-title">Qabul turi</th>
+                        <th class="column-title">Fakultet</th>
+                        <th class="column-title">Oliy Ta'lim nomi</th>
+                        <th class="column-title">Kurs</th>
+                        <th class="column-title no-link last"><span class="nobr">Action</span>
+                        </th>
+                        <th class="bulk-actions" colspan="7">
+                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span
+                                    class="action-cnt">
+                                </span> ) <i class="fa fa-chevron-down"></i></a>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @if (isset($message))
+                        <div class="alert alert-info">
+                            {{ $message }}
+                        </div>
+                    @endif
+                    @foreach ($lesson as $les)
+                        <tr class="even pointer">
+
+
+                            <td class=" ">{{ $les->id }}</td>
+                            <td class=" ">{{ $les->name }}</td>
+                            <td class=" ">{{ $les->birthday }}</td>
+
                             <td class=" ">
-                            @if($les->teacher == 1)
-                                  Ona tili
-                                @elseif($les->teacher == 2)
-                                  Matematika
-                                @elseif($les->teacher == 3)
-                                  Tarix
-                                @else($les->teacher == 4)
-                                  Rus tili
+                                @if ($les->t_turi == 1)
+                                    Grant
+                                @else($les->t_turi == 2)
+                                    Kontrakt
                                 @endif
                             </td>
-                            <td class=" "> <img src="/rasmlar/{{$les->image}}" width="100" height="100" alt="Rasm chiqmadi"></td>
-                            <td>
-                            <a  data-bs-toggle="modal" class="btn btn-primary" data-bs-target="#exampleModal{{$les->id}}" href="#"><i class='bx bx-pencil'></i></a>
-                            <a  data-bs-toggle="modal" class="btn btn-danger" data-bs-target="#deleteLesson{{$les->id}}" href="#"><i class='bx bx-trash' ></i></a>
-                           
+                            <td class=" ">
+                                @if ($les->q_turi == 1)
+                                    Kunduzgi
+                                @elseif($les->q_turi == 2)
+                                    Sirtqi
+                                @elseif($les->q_turi == 3)
+                                    Kechki
+                                @else($les->q_turi == 4)
+                                    Masofaviy
+                                @endif
+                            </td>
+                            <td class=" ">
+                                @if ($les->fakultet == 1)
+                                    Amaliy matematika
+                                @else($les->fakultet == 2)
+                                    Psixologiya
+                                @endif
+                            </td>
+                            <td class=" ">
+                                @if ($les->t_nomi == 1)
+                                    O'zbekiston Milliy universiteti Jizzax filiali
+                                @elseif($les->t_nomi == 2)
+                                    Jizzax davlat pedagogika universiteti
+                                @elseif($les->t_nomi == 3)
+                                    Jizzax davlat politexnika instituti
+                                @elseif($les->t_nomi == 4)
+                                    Sambhram universiteti
+                                @endif
+                            </td>
+                            <td class=" ">
+                                @if ($les->kurs == 1)
+                                    1-kurs
+                                @elseif($les->kurs == 2)
+                                    2-kurs
+                                @elseif($les->kurs == 3)
+                                    3-kurs
+                                @elseif($les->kurs == 4)
+                                    4-kurs
+                                @endif
+                            </td>
+
+                            <td class=" ">
+                                <a data-bs-toggle="modal" class="btn btn-primary"
+                                    data-bs-target="#exampleModal{{ $les->id }}" href="#"><i
+                                        class='bx bx-pencil'></i></a>
+                                <a data-bs-toggle="modal" class="btn btn-danger"
+                                    data-bs-target="#deleteLesson{{ $les->id }}" href="#"><i
+                                        class='bx bx-trash'></i></a>
+                                <a href="/exportpdf/{{ $les->id }}" class="btn btn-success"><i
+                                        class='bx bxs-file-pdf'></i></a>
+                                <a href="/exportwordd/{{ $les->id }}" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#lessonModal{{ $les->id }}">Ma'lumotlarni ko'rish
+                                </a>
+
 
                                 <!-- Modal -->
-           
-<div class="modal fade" id="exampleModal{{$les->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Teacher Edit</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form action="/lessonEditSave/{{$les->id}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" value="{{$les->name}}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        <input type="text" class="form-control" name="title" value="{{$les->title}}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Image</label>
-                        <input type="file" class="form-control" name="image" accept=".png,.jpg,.jpeg">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">teacher</label>
-                        <select class="form-select" aria-label="Default select example" name="teacher" value="{{$les->teacher}}">
-                            <option selected>Fan tanlang...</option>
-                            <option value="1">Ona tili</option>
-                            <option value="2">Matematika</option>
-                            <option value="3">Tarix</option>
-                            <option value="4">Rus tili</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary">Edit</button>
-                </form>
-      </div>
-    </div>
-  </div>
-</div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="deleteLesson{{$les->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">O'chirish</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Haqiqatdan ham {{$les->name}} ni o'chirmoqchimisiz</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yo'q</button>
-                                <a href="/deleteles/{{$les->id}}" class="btn btn-primary">Xa</a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        </td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
-                    </div>
-         
-          <br />
+
+                                <div class="modal fade" id="exampleModal{{ $les->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                    Talaba
+                                                    Tahrirlash</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/lessonEditSave/{{ $les->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name</label>
+                                                        <input type="text" class="form-control" name="name"
+                                                            value="{{ old('name', $les->name) }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Tug'ilgan kun</label>
+                                                        <input type="date" class="form-control" name="birthday"
+                                                            value="{{ old('birthday', $les->birthday) }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Ta'lim turi</label>
+                                                        <select class="form-select" name="t_turi">
+                                                            <option value="1"
+                                                                {{ $les->t_turi == 1 ? 'selected' : '' }}>Grant
+                                                            </option>
+                                                            <option value="2"
+                                                                {{ $les->t_turi == 2 ? 'selected' : '' }}>Kontrakt
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Qabul turi</label>
+                                                        <select class="form-select" name="q_turi">
+                                                            <option value="1"
+                                                                {{ $les->q_turi == 1 ? 'selected' : '' }}>Kunduzgi
+                                                            </option>
+                                                            <option value="2"
+                                                                {{ $les->q_turi == 2 ? 'selected' : '' }}>Sirtqi
+                                                            </option>
+                                                            <option value="3"
+                                                                {{ $les->q_turi == 3 ? 'selected' : '' }}>Kechki
+                                                            </option>
+                                                            <option value="4"
+                                                                {{ $les->q_turi == 4 ? 'selected' : '' }}>Masofaviy
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Fakultet</label>
+                                                        <select class="form-select" name="fakultet">
+                                                            <option value="1"
+                                                                {{ $les->fakultet == 1 ? 'selected' : '' }}>Amaliy
+                                                                matematika</option>
+                                                            <option value="2"
+                                                                {{ $les->fakultet == 2 ? 'selected' : '' }}>
+                                                                Psixologiya
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Oliy ta'lim nomi</label>
+                                                        <select class="form-select" name="t_nomi">
+                                                            <option value="1"
+                                                                {{ $les->t_nomi == 1 ? 'selected' : '' }}>
+                                                                O'zbekiston
+                                                                Milliy universiteti Jizzax filiali</option>
+                                                            <option value="2"
+                                                                {{ $les->t_nomi == 2 ? 'selected' : '' }}>Jizzax
+                                                                davlat
+                                                                pedagogika universiteti</option>
+                                                            <option value="3"
+                                                                {{ $les->t_nomi == 3 ? 'selected' : '' }}>Jizzax
+                                                                davlat
+                                                                politexnika instituti</option>
+                                                            <option value="4"
+                                                                {{ $les->t_nomi == 4 ? 'selected' : '' }}>Sambhram
+                                                                universiteti</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Kurs</label>
+                                                        <select class="form-select" name="kurs">
+                                                            <option value="1"
+                                                                {{ $les->kurs == 1 ? 'selected' : '' }}>1-kurs
+                                                            </option>
+                                                            <option value="2"
+                                                                {{ $les->kurs == 2 ? 'selected' : '' }}>2-kurs
+                                                            </option>
+                                                            <option value="3"
+                                                                {{ $les->kurs == 3 ? 'selected' : '' }}>3-kurs
+                                                            </option>
+                                                            <option value="4"
+                                                                {{ $les->kurs == 4 ? 'selected' : '' }}>4-kurs
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <button class="btn btn-primary">Tahrirlash</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteLesson{{ $les->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                    O'chirish
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Haqiqatdan ham {{ $les->name }} ni o'chirmoqchimisiz
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Yo'q</button>
+                                                <a href="/deleteles/{{ $les->id }}" class="btn btn-primary">Xa</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Jadval -->
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="lessonModal{{ $les->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    {{ $les->name }} haqida
+                                                    ma'lumot</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><span style="font-weight: bold;">Ism:</span> {{ $les->name }}</p>
+                                                <p><span style="font-weight: bold;">Tug'ilgan kun:</span>
+                                                    {{ $les->birthday }}</p>
+                                                <p><span style="font-weight: bold;">Ta'lim turi:</span>
+                                                    {{ $les->t_turi == 1 ? 'Grant' : 'Kontrakt' }}
+                                                </p>
+                                                <p><span style="font-weight: bold;">Qabul turi:</span>
+                                                    @if ($les->q_turi == 1)
+                                                        Kunduzgi
+                                                    @elseif($les->q_turi == 2)
+                                                        Sirtqi
+                                                    @elseif($les->q_turi == 3)
+                                                        Kechki
+                                                    @else
+                                                        Masofaviy
+                                                    @endif
+                                                </p>
+                                                <p><span style="font-weight: bold;">Kursi:</span>
+                                                    @if ($les->kurs == 1)
+                                                        1-kurs
+                                                    @elseif($les->kurs == 2)
+                                                        2-kurs
+                                                    @elseif($les->kurs == 3)
+                                                        3-kurs
+                                                    @else
+                                                        4-kurs
+                                                    @endif
+                                                </p>
+                                                <!-- Qo'shimcha ma'lumotlarni qo'shish -->
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-        <!-- /page content -->
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Begzod - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
+
+
+        <br />
     </div>
-
-    <!-- jQuery -->
-    <script src="/admin/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="/admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
-    <script src="/admin/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="/admin/vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="/admin/vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="/admin/vendors/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="/admin/vendors/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
-    <script src="/admin/vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script src="/admin/vendors/Flot/jquery.flot.js"></script>
-    <script src="/admin/vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="/admin/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="/admin/vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="/admin/vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script src="/admin/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="/admin/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="/admin/vendors/flot.curvedlines/curvedLines.js"></script>
-    <!-- DateJS -->
-    <script src="/admin/vendors/DateJS/build/date.js"></script>
-    <!-- JQVMap -->
-    <script src="/admin/vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="/admin/vendors/moment/min/moment.min.js"></script>
-    <script src="/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="/admin/build/js/custom.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html>
+    <!-- /page content -->
+@endsection

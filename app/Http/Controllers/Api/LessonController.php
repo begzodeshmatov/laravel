@@ -17,6 +17,10 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
     public function index()
     {
         return LessonResource::collection(Lesson::all());
